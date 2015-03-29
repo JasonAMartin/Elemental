@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SpriteKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,12 +37,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+        // preload sound effects to avoid lag on first playing of sound
+        //iterating through dictionary and pre-loading all sounds
+        for (sound, soundfile) in soundFiles {
+            SKAction.playSoundFileNamed(soundfile, waitForCompletion: false)
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 

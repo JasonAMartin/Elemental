@@ -9,37 +9,63 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        
-        self.addChild(myLabel)
+    
+    var level: Level!
+    let tilesLayer = SKNode()
+    let TileWidth: CGFloat = 32.0
+    let TileHeight: CGFloat = 36.0
+    
+    let gameLayer = SKNode()
+    let elementsLayer = SKNode()
+    
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder) is not used in this app")
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        /* Called when a touch begins */
+    override init(size: CGSize) {
+        super.init(size: size)
+        runAction(playBackgroundMusic)
+
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            
+        addChild(gameBackground)
+        addChild(gameLayer)
         
-        for touch: AnyObject in touches {
-            let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
+        let layerPosition = CGPoint(
+            x: -TileWidth * CGFloat(NumColumns) / 2,
+            y: -TileHeight * CGFloat(NumRows) / 2)
+        
+        elementsLayer.position = layerPosition
+        tilesLayer.position = layerPosition
+        gameLayer.addChild(tilesLayer)
+        gameLayer.addChild(elementsLayer)
+    }
+    
+    func addSpritesForElements(elements: Set<Element>) {
+        for element in elements {
+            let sprite = SKSpriteNode(imageNamed: element.elementType.spriteName)
+            sprite.position = pointForColumn(element.column, row:element.row)
+            elementsLayer.addChild(sprite)
+            element.sprite = sprite
         }
     }
-   
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+    
+    func pointForColumn(column: Int, row: Int) -> CGPoint {
+        return CGPoint(
+            x: CGFloat(column)*TileWidth + TileWidth/2,
+            y: CGFloat(row)*TileHeight + TileHeight/2)
+    }
+    
+    func addTiles() {
+        for row in 0..<NumRows {
+            for column in 0..<NumColumns {
+                if let tile = level.tileAtColumn(column, row: row) {
+                    let tileNode = SKSpriteNode(imageNamed: "Tile")
+                    tileNode.position = pointForColumn(column, row: row)
+                    tilesLayer.addChild(tileNode)
+                }
+            }
+        }
     }
 }
