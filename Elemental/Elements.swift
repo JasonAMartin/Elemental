@@ -50,7 +50,9 @@ enum ElementType: Int , Printable {
     }
     
     var highlightedSpriteName: String {
-        return spriteName + "-Highlighted"
+        //return spriteName + "-Highlighted"
+        return spriteName
+
     }
     
     static func random() -> ElementType {

@@ -184,4 +184,141 @@ class Level {
         return possibleSwaps.containsElement(swap)
     }
     
+    private func detectHorizontalMatches() -> Set<Chain> {
+        // 1
+        var set = Set<Chain>()
+        // 2
+        for row in 0..<NumRows {
+            for var column = 0; column < NumColumns - 2 ; {
+                // 3
+                if let element = elements[column, row] {
+                    let matchType = element.elementType
+                    // 4
+                    if elements[column + 1, row]?.elementType == matchType &&
+                        elements[column + 2, row]?.elementType == matchType {
+                            // 5
+                            let chain = Chain(chainType: .Horizontal)
+                            do {
+                                chain.addElement(elements[column, row]!)
+                                ++column
+                            }
+                                while column < NumColumns && elements[column, row]?.elementType == matchType
+                            
+                            set.addElement(chain)
+                            continue
+                    }
+                }
+                // 6
+                ++column
+            }
+        }
+        return set
+    }
+    
+    private func detectVerticalMatches() -> Set<Chain> {
+        var set = Set<Chain>()
+        
+        for column in 0..<NumColumns {
+            for var row = 0; row < NumRows - 2; {
+                if let element = elements[column, row] {
+                    let matchType = element.elementType
+                    
+                    if elements[column, row + 1]?.elementType == matchType &&
+                        elements[column, row + 2]?.elementType == matchType {
+                            
+                            let chain = Chain(chainType: .Vertical)
+                            do {
+                                chain.addElement(elements[column, row]!)
+                                ++row
+                            }
+                                while row < NumRows && elements[column, row]?.elementType == matchType
+                            
+                            set.addElement(chain)
+                            continue
+                    }
+                }
+                ++row
+            }
+        }
+        return set
+    }
+    
+    func removeMatches() -> Set<Chain> {
+        let horizontalChains = detectHorizontalMatches()
+        let verticalChains = detectVerticalMatches()
+        removeElements(horizontalChains)
+        removeElements(verticalChains)
+        return horizontalChains.unionSet(verticalChains)
+    }
+    
+    private func removeElements(chains: Set<Chain>) {
+        for chain in chains {
+            for element in chain.elements {
+                elements[element.column, element.row] = nil
+            }
+        }
+    }
+    
+    func fillHoles() -> [[Element]] {
+        var columns = [[Element]]()
+        // 1
+        for column in 0..<NumColumns {
+            var array = [Element]()
+            for row in 0..<NumRows {
+                // 2
+                if tiles[column, row] != nil && elements[column, row] == nil {
+                    // 3
+                    for lookup in (row + 1)..<NumRows {
+                        if let element = elements[column, lookup] {
+                            // 4
+                            elements[column, lookup] = nil
+                            elements[column, row] = element
+                            element.row = row
+                            // 5
+                            array.append(element)
+                            // 6
+                            break
+                        }
+                    }
+                }
+            }
+            // 7
+            if !array.isEmpty {
+                columns.append(array)
+            }
+        }
+        return columns
+    }
+    
+    //this method adds new elements
+    func topUpElements() -> [[Element]] {
+        var columns = [[Element]]()
+        var elementType: ElementType = .Unknown
+        
+        for column in 0..<NumColumns {
+            var array = [Element]()
+            // 1
+            for var row = NumRows - 1; row >= 0 && elements[column, row] == nil; --row {
+                // 2
+                if tiles[column, row] != nil {
+                    // 3
+                    var newElementType: ElementType
+                    do {
+                        newElementType = ElementType.random()
+                    } while newElementType == elementType
+                    elementType = newElementType
+                    // 4
+                    let element = Element(column: column, row: row, elementType: elementType)
+                    elements[column, row] = element
+                    array.append(element)
+                }
+            }
+            // 5
+            if !array.isEmpty {
+                columns.append(array)
+            }
+        }
+        return columns
+    }
+
 }

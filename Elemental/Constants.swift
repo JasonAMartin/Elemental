@@ -27,3 +27,4 @@ let gameBackground = SKSpriteNode(imageNamed: "gameBackground")
 //sound reference
 var playFireball = SKAction.playSoundFileNamed("fireball.mp3", waitForCompletion: true)
 var playBackgroundMusic = SKAction.playSoundFileNamed("backgroundSound.mp3", waitForCompletion: true)
+var playTing = SKAction.playSoundFileNamed("ting.mp3", waitForCompletion: false)

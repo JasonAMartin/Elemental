@@ -65,13 +65,35 @@ class GameViewController: UIViewController {
         
         if level.isPossibleSwap(swap) {
             level.performSwap(swap)
-            scene.animateSwap(swap) {
-                self.view.userInteractionEnabled = true
-            }
+            scene.animateSwap(swap, completion: handleMatches)
         } else {
             scene.animateInvalidSwap(swap) {
                 self.view.userInteractionEnabled = true
             }
         }
     }
+    
+    func handleMatches() {
+        let chains = level.removeMatches()
+        if chains.count == 0 {
+            beginNextTurn()
+            return
+        }
+        scene.animateMatchedElements(chains) {
+            let columns = self.level.fillHoles()
+            self.scene.animateFallingElements(columns) {
+                let columns = self.level.topUpElements()
+                self.scene.animateNewElements(columns) {
+                    self.handleMatches()
+                }
+            }
+        }
+    }
+    
+    func beginNextTurn() {
+        level.detectPossibleSwaps()
+        view.userInteractionEnabled = true
+    }
+
+
 }

@@ -40,6 +40,7 @@
 		4018266A1AC89B0C001B8AA3 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 401826691AC89B0C001B8AA3 /* Sprites.atlas */; };
 		4018266C1AC89E13001B8AA3 /* Level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 4018266B1AC89E13001B8AA3 /* Level_5.json */; };
 		4018266E1AC9BD99001B8AA3 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018266D1AC9BD99001B8AA3 /* Swap.swift */; };
+		401826701AC9D024001B8AA3 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018266F1AC9D024001B8AA3 /* Chain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		401826691AC89B0C001B8AA3 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		4018266B1AC89E13001B8AA3 /* Level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_5.json; sourceTree = "<group>"; };
 		4018266D1AC9BD99001B8AA3 /* Swap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
+		4018266F1AC9D024001B8AA3 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				401826561AC87944001B8AA3 /* Level.swift */,
 				401826651AC89455001B8AA3 /* Extensions.swift */,
 				4018261B1AC86533001B8AA3 /* GameViewController.swift */,
+				4018266F1AC9D024001B8AA3 /* Chain.swift */,
 				4018261D1AC86533001B8AA3 /* Main.storyboard */,
 				401826201AC86533001B8AA3 /* Images.xcassets */,
 				401826221AC86533001B8AA3 /* LaunchScreen.xib */,
@@ -336,6 +339,7 @@
 				401826661AC89455001B8AA3 /* Extensions.swift in Sources */,
 				401826161AC86533001B8AA3 /* AppDelegate.swift in Sources */,
 				401826641AC89410001B8AA3 /* Tile.swift in Sources */,
+				401826701AC9D024001B8AA3 /* Chain.swift in Sources */,
 				401826571AC87944001B8AA3 /* Level.swift in Sources */,
 				4018264F1AC869F2001B8AA3 /* Constants.swift in Sources */,
 			);
