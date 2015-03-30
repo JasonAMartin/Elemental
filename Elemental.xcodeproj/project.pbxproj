@@ -39,6 +39,7 @@
 		401826661AC89455001B8AA3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401826651AC89455001B8AA3 /* Extensions.swift */; };
 		4018266A1AC89B0C001B8AA3 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 401826691AC89B0C001B8AA3 /* Sprites.atlas */; };
 		4018266C1AC89E13001B8AA3 /* Level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 4018266B1AC89E13001B8AA3 /* Level_5.json */; };
+		4018266E1AC9BD99001B8AA3 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018266D1AC9BD99001B8AA3 /* Swap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		401826651AC89455001B8AA3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		401826691AC89B0C001B8AA3 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		4018266B1AC89E13001B8AA3 /* Level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_5.json; sourceTree = "<group>"; };
+		4018266D1AC9BD99001B8AA3 /* Swap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				4018264E1AC869F2001B8AA3 /* Constants.swift */,
 				401826171AC86533001B8AA3 /* GameScene.sks */,
 				401826191AC86533001B8AA3 /* GameScene.swift */,
+				4018266D1AC9BD99001B8AA3 /* Swap.swift */,
 				401826501AC87678001B8AA3 /* Elements.swift */,
 				401826521AC878D3001B8AA3 /* Array2D.swift */,
 				401826541AC87917001B8AA3 /* Set.swift */,
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4018261A1AC86533001B8AA3 /* GameScene.swift in Sources */,
+				4018266E1AC9BD99001B8AA3 /* Swap.swift in Sources */,
 				401826531AC878D3001B8AA3 /* Array2D.swift in Sources */,
 				4018261C1AC86533001B8AA3 /* GameViewController.swift in Sources */,
 				401826551AC87917001B8AA3 /* Set.swift in Sources */,
