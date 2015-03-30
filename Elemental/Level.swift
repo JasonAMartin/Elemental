@@ -8,15 +8,17 @@
 
 import Foundation
 
-let NumColumns = 9
-let NumRows = 9
+let NumColumns = 8
+let NumRows = 8
 
 class Level {
     private var elements = Array2D<Element>(columns: NumColumns, rows: NumRows)
-    
+    private var comboMultiplier = 0
     private var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)
     private var possibleSwaps = Set<Swap>()
-    
+    let targetScore: Int!
+    let maximumMoves: Int!
+    let levelType: String!
     
     init(filename: String) {
         // 1
@@ -34,6 +36,9 @@ class Level {
                         }
                     }
                 }
+                targetScore = (dictionary["targetScore"] as NSNumber).integerValue
+                maximumMoves = (dictionary["moves"] as NSNumber).integerValue
+                levelType = (dictionary["element"] as NSString)
             }
         }
     }
@@ -248,6 +253,8 @@ class Level {
         let verticalChains = detectVerticalMatches()
         removeElements(horizontalChains)
         removeElements(verticalChains)
+        calculateScores(horizontalChains)
+        calculateScores(verticalChains)
         return horizontalChains.unionSet(verticalChains)
     }
     
@@ -321,4 +328,16 @@ class Level {
         return columns
     }
 
+    private func calculateScores(chains: Set<Chain>) {
+        // 3-chain is 60 pts, 4-chain is 120, 5-chain is 180, and so on
+        for chain in chains {
+            chain.score = 60 * (chain.length - 2) * comboMultiplier
+            ++comboMultiplier
+        }
+    }
+    
+    func resetComboMultiplier() {
+        comboMultiplier = 1
+    }
+    
 }

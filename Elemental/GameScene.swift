@@ -29,12 +29,13 @@ class GameScene: SKScene {
     
     override init(size: CGSize) {
         super.init(size: size)
-        runAction(playBackgroundMusic)
+        //runAction(playBackgroundMusic)
 
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
             
         addChild(gameBackground)
         addChild(gameLayer)
+        gameLayer.hidden = true
         
         let layerPosition = CGPoint(
             x: -TileWidth * CGFloat(NumColumns) / 2,
@@ -46,6 +47,7 @@ class GameScene: SKScene {
         gameLayer.addChild(elementsLayer)
         swipeFromColumn = nil
         swipeFromRow = nil
+        SKLabelNode(fontNamed: "GillSans-BoldItalic")
     }
     
     func addSpritesForElements(elements: Set<Element>) {
@@ -54,6 +56,18 @@ class GameScene: SKScene {
             sprite.position = pointForColumn(element.column, row:element.row)
             elementsLayer.addChild(sprite)
             element.sprite = sprite
+            sprite.alpha = 0
+            sprite.xScale = 0.5
+            sprite.yScale = 0.5
+            
+            sprite.runAction(
+                SKAction.sequence([
+                    SKAction.waitForDuration(0.25, withRange: 0.5),
+                    SKAction.group([
+                        SKAction.fadeInWithDuration(0.25),
+                        SKAction.scaleTo(1.0, duration: 0.25)
+                        ])
+                    ]))
         }
     }
     
@@ -232,6 +246,9 @@ class GameScene: SKScene {
     
     func animateMatchedElements(chains: Set<Chain>, completion: () -> ()) {
         for chain in chains {
+            
+            animateScoreForChain(chain)
+            
             for element in chain.elements {
                 if let sprite = element.sprite {
                     if sprite.actionForKey("removing") == nil {
@@ -309,6 +326,45 @@ class GameScene: SKScene {
         }
         // 7
         runAction(SKAction.waitForDuration(longestDuration), completion: completion)
+    }
+    
+    func animateScoreForChain(chain: Chain) {
+        // Figure out what the midpoint of the chain is.
+        let firstSprite = chain.firstElement().sprite!
+        let lastSprite = chain.lastElement().sprite!
+        let centerPosition = CGPoint(
+            x: (firstSprite.position.x + lastSprite.position.x)/2,
+            y: (firstSprite.position.y + lastSprite.position.y)/2 - 8)
+        
+        // Add a label for the score that slowly floats up.
+        let scoreLabel = SKLabelNode(fontNamed: "GillSans-BoldItalic")
+        scoreLabel.fontSize = 16
+        scoreLabel.text = NSString(format: "%ld", chain.score)
+        scoreLabel.position = centerPosition
+        scoreLabel.zPosition = 300
+        elementsLayer.addChild(scoreLabel)
+        
+        let moveAction = SKAction.moveBy(CGVector(dx: 0, dy: 3), duration: 0.7)
+        moveAction.timingMode = .EaseOut
+        scoreLabel.runAction(SKAction.sequence([moveAction, SKAction.removeFromParent()]))
+    }
+    
+    func animateGameOver(completion: () -> ()) {
+        let action = SKAction.moveBy(CGVector(dx: 0, dy: -size.height), duration: 0.3)
+        action.timingMode = .EaseIn
+        gameLayer.runAction(action, completion: completion)
+    }
+    
+    func animateBeginGame(completion: () -> ()) {
+        gameLayer.hidden = false
+        gameLayer.position = CGPoint(x: 0, y: size.height)
+        let action = SKAction.moveBy(CGVector(dx: 0, dy: -size.height), duration: 0.3)
+        action.timingMode = .EaseOut
+        gameLayer.runAction(action, completion: completion)
+    }
+    
+    func removeAllElementSprites() {
+        elementsLayer.removeAllChildren()
     }
 
 }

@@ -8,6 +8,7 @@
 
 class Chain: Hashable, Printable {
     var elements = [Element]()
+    var score = 0
     
     enum ChainType: Printable {
         case Horizontal
