@@ -10,5 +10,9 @@
     
     "targetScore" : 1000,
     "moves" : 15,
-    "element" : "fire"
+    "element" : "fire",
+    "antiElement" : "ice",
+    "levelName" : "Trial By Fire",
+    "backgroundMusic" : "mainBackground",
+    "backgroundImage" : "gameBackground"
 }

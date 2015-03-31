@@ -44,8 +44,8 @@ class Chain: Hashable, Printable {
         return elements.count
     }
     
-    var description: String {
-        return "type:\(chainType) cookies:\(elements)"
+    var description: String {        
+        return "type:\(chainType) elements:\(elements)"
     }
     
     var hashValue: Int {

@@ -19,6 +19,10 @@ class Level {
     let targetScore: Int!
     let maximumMoves: Int!
     let levelType: String!
+    let antiLevelType: String!
+    let backgroundMusic: String!
+    let backgroundImage: String!
+    let levelName: String!
     
     init(filename: String) {
         // 1
@@ -39,6 +43,11 @@ class Level {
                 targetScore = (dictionary["targetScore"] as NSNumber).integerValue
                 maximumMoves = (dictionary["moves"] as NSNumber).integerValue
                 levelType = (dictionary["element"] as NSString)
+                antiLevelType = (dictionary["antiElement"] as NSString)
+                backgroundImage = (dictionary["backgroundImage"] as NSString)
+                backgroundMusic = (dictionary["backgroundMusic"] as NSString)
+                levelName = (dictionary["levelName"] as NSString)
+
             }
         }
     }
@@ -148,7 +157,7 @@ class Level {
                             elements[column, row] = other
                             elements[column + 1, row] = element
                             
-                            // Is either cookie now part of a chain?
+                            // Is either element now part of a chain?
                             if hasChainAtColumn(column + 1, row: row) ||
                                 hasChainAtColumn(column, row: row) {
                                     set.addElement(Swap(elementA: element, elementB: other))
@@ -165,7 +174,7 @@ class Level {
                             elements[column, row] = other
                             elements[column, row + 1] = element
                             
-                            // Is either cookie now part of a chain?
+                            // Is either element now part of a chain?
                             if hasChainAtColumn(column, row: row + 1) ||
                                 hasChainAtColumn(column, row: row) {
                                     set.addElement(Swap(elementA: element, elementB: other))
@@ -329,11 +338,26 @@ class Level {
     }
 
     private func calculateScores(chains: Set<Chain>) {
-        // 3-chain is 60 pts, 4-chain is 120, 5-chain is 180, and so on
+        
+        let currentLevelType = levelType.uppercaseString
+        let antiElement = antiLevelType.uppercaseString
+        
+        //matches are notified here.
+        //element names are uppercase, like ICE, FIRE, etc and referenced by: chain.firstElement().elemental
+        //level type is levelType, like fire, ice, etc.
+        
+        //RULE: Matches of the level type = points. Matches of anti-level deduct points. All the rest are ignored and just cost moves.
         for chain in chains {
-            chain.score = 60 * (chain.length - 2) * comboMultiplier
-            ++comboMultiplier
+
+            if(chain.firstElement().elemental == currentLevelType){
+                chain.score = 60 * (chain.length - 2) * comboMultiplier
+            } else if (chain.firstElement().elemental == antiElement) {
+                //player has made a chain that is the anti element, so deduct score!
+                chain.score = -60 * (chain.length - 2) * comboMultiplier
+            }
+            //++comboMultiplier
         }
+      
     }
     
     func resetComboMultiplier() {

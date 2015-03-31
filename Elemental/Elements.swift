@@ -13,11 +13,15 @@ class Element: Printable, Hashable {
     var row: Int
     let elementType: ElementType
     var sprite: SKSpriteNode?
-    
+    let elemental: String
+
     init(column: Int, row: Int, elementType: ElementType) {
         self.column = column
         self.row = row
         self.elementType = elementType
+        self.elemental = elementType.description
+        //I am removing the element- that comes with elementType so I can reference elements by name safer in other areas
+        self.elemental = self.elemental.stringByReplacingOccurrencesOfString("element-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil).uppercaseString
     }
     
     var description: String {

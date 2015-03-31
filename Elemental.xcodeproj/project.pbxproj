@@ -41,6 +41,8 @@
 		4018266C1AC89E13001B8AA3 /* Level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 4018266B1AC89E13001B8AA3 /* Level_5.json */; };
 		4018266E1AC9BD99001B8AA3 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018266D1AC9BD99001B8AA3 /* Swap.swift */; };
 		401826701AC9D024001B8AA3 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018266F1AC9D024001B8AA3 /* Chain.swift */; };
+		401826721ACB09E6001B8AA3 /* noMatch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 401826711ACB09E6001B8AA3 /* noMatch.mp3 */; };
+		401826741ACB0A5E001B8AA3 /* teleport.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 401826731ACB0A5E001B8AA3 /* teleport.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		4018266B1AC89E13001B8AA3 /* Level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_5.json; sourceTree = "<group>"; };
 		4018266D1AC9BD99001B8AA3 /* Swap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
 		4018266F1AC9D024001B8AA3 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
+		401826711ACB09E6001B8AA3 /* noMatch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noMatch.mp3; sourceTree = "<group>"; };
+		401826731ACB0A5E001B8AA3 /* teleport.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = teleport.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +193,10 @@
 				4018263B1AC8697C001B8AA3 /* blockStacking.mp3 */,
 				4018263C1AC8697C001B8AA3 /* fireball.mp3 */,
 				4018263D1AC8697C001B8AA3 /* freedom.mp3 */,
+				401826711ACB09E6001B8AA3 /* noMatch.mp3 */,
 				4018263E1AC8697C001B8AA3 /* gameIntro.mp3 */,
 				4018263F1AC8697C001B8AA3 /* gameIntroTwo.mp3 */,
+				401826731ACB0A5E001B8AA3 /* teleport.mp3 */,
 				401826401AC8697C001B8AA3 /* magic.mp3 */,
 				401826411AC8697C001B8AA3 /* magicpoint.mp3 */,
 				401826421AC8697C001B8AA3 /* powerOne.mp3 */,
@@ -298,6 +304,7 @@
 				4018264A1AC8697C001B8AA3 /* magic.mp3 in Resources */,
 				4018266C1AC89E13001B8AA3 /* Level_5.json in Resources */,
 				401826441AC8697C001B8AA3 /* backgroundSound.mp3 in Resources */,
+				401826741ACB0A5E001B8AA3 /* teleport.mp3 in Resources */,
 				401826481AC8697C001B8AA3 /* gameIntro.mp3 in Resources */,
 				401826461AC8697C001B8AA3 /* fireball.mp3 in Resources */,
 				401826471AC8697C001B8AA3 /* freedom.mp3 in Resources */,
@@ -309,6 +316,7 @@
 				401826211AC86533001B8AA3 /* Images.xcassets in Resources */,
 				4018266A1AC89B0C001B8AA3 /* Sprites.atlas in Resources */,
 				4018265F1AC893C8001B8AA3 /* Level_1.json in Resources */,
+				401826721ACB09E6001B8AA3 /* noMatch.mp3 in Resources */,
 				401826601AC893C8001B8AA3 /* Level_2.json in Resources */,
 				4018264C1AC8697C001B8AA3 /* powerOne.mp3 in Resources */,
 				401826181AC86533001B8AA3 /* GameScene.sks in Resources */,

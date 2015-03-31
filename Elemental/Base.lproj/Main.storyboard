@@ -59,7 +59,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DYF-Wj-XGr">
-                                <rect key="frame" x="124" y="518" width="72" height="30"/>
+                                <rect key="frame" x="27" y="468" width="116" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.51971114309999999" green="0.78757195719999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="SHUFFLE!">
@@ -70,11 +70,20 @@
                                     <action selector="shuffleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="9Wh-Z3-hZi"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="level: lightning" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Vs-2T-SW6">
+                                <rect key="frame" x="168" y="468" width="136" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.51971114309999999" green="0.78757195719999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.65214646464646464" green="0.65214646464646464" blue="0.65214646464646464" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="gameOverPanel" destination="irw-OQ-u4j" id="tzd-Cs-vL7"/>
+                        <outlet property="levelTypeLabel" destination="4Vs-2T-SW6" id="Kxd-Tv-uDW"/>
                         <outlet property="movesLabel" destination="UWQ-a7-LHK" id="KBp-i3-67g"/>
                         <outlet property="scoreLabel" destination="YPq-Sr-zDN" id="4dE-MN-mgf"/>
                         <outlet property="shuffleButton" destination="DYF-Wj-XGr" id="cgJ-Ne-xQB"/>
@@ -83,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="114.66666666666667" y="288.73333333333335"/>
+            <point key="canvasLocation" x="114" y="288"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

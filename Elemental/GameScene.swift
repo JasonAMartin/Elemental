@@ -21,18 +21,20 @@ class GameScene: SKScene {
     
     let gameLayer = SKNode()
     let elementsLayer = SKNode()
+    var background: String!
     
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder) is not used in this app")
     }
     
+    
     override init(size: CGSize) {
         super.init(size: size)
         //runAction(playBackgroundMusic)
 
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            
+        gameBackground.name = "Works"
         addChild(gameBackground)
         addChild(gameLayer)
         gameLayer.hidden = true
@@ -48,6 +50,11 @@ class GameScene: SKScene {
         swipeFromColumn = nil
         swipeFromRow = nil
         SKLabelNode(fontNamed: "GillSans-BoldItalic")
+    }
+    
+    func changeBackground(backgroundImage: String){
+        //change the game's background
+         gameBackground.texture = SKTexture(imageNamed: backgroundImage)
     }
     
     func addSpritesForElements(elements: Set<Element>) {
@@ -158,7 +165,7 @@ class GameScene: SKScene {
         if toColumn < 0 || toColumn >= NumColumns { return }
         if toRow < 0 || toRow >= NumRows { return }
         
-        // Can't swap if there is no cookie to swap with. This happens when the user
+        // Can't swap if there is no element to swap with. This happens when the user
         // swipes into a gap where there is no tile.
         if let toElement = level.elementAtColumn(toColumn, row: toRow) {
             if let fromElement = level.elementAtColumn(swipeFromColumn!, row: swipeFromRow!) {
@@ -283,7 +290,7 @@ class GameScene: SKScene {
                 sprite.runAction(
                     SKAction.sequence([
                         SKAction.waitForDuration(delay),
-                        SKAction.group([moveAction, playFireball])]))
+                        SKAction.group([moveAction])])) //could play sound like this: [moveAction, playFireball]
             }
         }
         // 6
@@ -365,6 +372,17 @@ class GameScene: SKScene {
     
     func removeAllElementSprites() {
         elementsLayer.removeAllChildren()
+    }
+    
+    func playSound(soundType:Int){
+        let sound = soundType as Int
+        if(sound == 1){
+        runAction(playGoodElement)
+        } else if (sound == 2){
+            runAction(playBadElement)
+        } else {
+            runAction(playNoMatch)
+        }
     }
 
 }

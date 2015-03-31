@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 extension Dictionary {
     static func loadJSONFromBundle(filename: String) -> Dictionary<String, AnyObject>? {
@@ -32,5 +33,42 @@ extension Dictionary {
             println("Could not find level file: \(filename)")
             return nil
         }
+    }
+}
+
+
+
+extension SKColor {
+    
+    class func appIceMana() -> UIColor {
+        return UIColor(red: 109.0/255.0, green: 189.0/255.0, blue: 189.0/255.0, alpha: 0.3)
+    }
+    
+    class func appFireMana() -> UIColor {
+        return UIColor(red: 222.0/255.0, green: 130.0/255.0, blue: 49.0/255.0, alpha: 1.0)
+    }
+    
+    class func appEarthMana() -> UIColor {
+        return UIColor(red: 142.0/255.0, green: 77.0/255.0, blue: 10.0/255.0, alpha: 1.0)
+    }
+    
+    class func appWindMana() -> UIColor {
+        return UIColor(red: 63.0/255.0, green: 116.0/255.0, blue: 158.0/255.0, alpha: 1.0)
+    }
+    
+    class func appTimeMana() -> UIColor {
+        return UIColor(red: 182.0/255.0, green: 35.0/255.0, blue: 35.0/255.0, alpha: 1.0)
+    }
+    
+    class func appVoidMana() -> UIColor {
+        return UIColor(red: 197.0/255.0, green: 139.0/255.0, blue: 251.0/255.0, alpha: 1.0)
+    }
+    
+    class func appLightningMana() -> UIColor {
+        return UIColor(red: 251.0/255.0, green: 101.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+    }
+    
+    class func appWaterMana() -> UIColor {
+        return UIColor(red: 87.0/255.0, green: 147.0/255.0, blue: 198.0/255.0, alpha: 1.0)
     }
 }
