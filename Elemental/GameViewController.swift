@@ -16,6 +16,8 @@ class GameViewController: UIViewController {
     var level: Level!
     var movesLeft = 0
     var score = 0
+    var canTeleport = 0
+    
     var tapGestureRecognizer: UITapGestureRecognizer!
     
     //add mana Inidcators
@@ -48,9 +50,12 @@ class GameViewController: UIViewController {
     @IBOutlet weak var levelTypeLabel: UILabel!
 
     @IBAction func shuffleButtonPressed(AnyObject) {
-        scene.runAction(playTeleport)
-        shuffle()
-        decrementMoves()
+        if(canTeleport==1){
+            useTeleport()
+            scene.runAction(playTeleport)
+            shuffle()
+            decrementMoves()
+        }
     }
 
     override func prefersStatusBarHidden() -> Bool {
@@ -139,6 +144,7 @@ class GameViewController: UIViewController {
         gameOverPanel.hidden = true
         shuffleButton.hidden = true
         shuffleButton.layer.cornerRadius = 15.0
+        shuffleButton.setTitle("[NEED MORE MANA]", forState: .Normal)
         
         // Present the scene.
         skView.presentScene(scene)
@@ -198,7 +204,6 @@ class GameViewController: UIViewController {
                 self.updataMana(manaType: chain.firstElement().elemental, manaAmount: 10)
                
                 
-                
                 //playing good or ba sound on match
                 if(chain.score>0){
                     self.scene.playSound(1)
@@ -225,6 +230,7 @@ class GameViewController: UIViewController {
     func beginNextTurn() {
         level.resetComboMultiplier()
         level.detectPossibleSwaps()
+        checkTeleport()
         view.userInteractionEnabled = true
         decrementMoves()
     }
@@ -234,6 +240,25 @@ class GameViewController: UIViewController {
         targetLabel.text = NSString(format: "%ld", level.targetScore)
         movesLabel.text = NSString(format: "%ld", movesLeft)
         scoreLabel.text = NSString(format: "%ld", score)
+    }
+    
+    func checkTeleport(){
+        //teleport requires time: 30, fire: 20, wind: 10
+        
+        if(timeMana >= 30 && fireMana >= 20 && windMana >= 10){
+            canTeleport = 1
+            shuffleButton.setTitle("TELEPORT!", forState: .Normal)
+        } else {
+            canTeleport = 0
+            shuffleButton.setTitle("[NEED MORE MANA]", forState: .Normal)
+        }
+    }
+    
+    func useTeleport(){
+        updataMana(manaType: "TIME", manaAmount: -30)
+        updataMana(manaType: "FIRE", manaAmount: -20)
+        updataMana(manaType: "WIND", manaAmount: -10)
+        checkTeleport()
     }
     
     func updataMana(#manaType:String, #manaAmount: Int){

@@ -47,6 +47,39 @@ class GameScene: SKScene {
         tilesLayer.position = layerPosition
         gameLayer.addChild(tilesLayer)
         gameLayer.addChild(elementsLayer)
+        
+        fireManaGraphic.position = CGPoint(x: -86, y: -212)
+        fireManaGraphic.size = CGSizeMake(20,20)
+        gameLayer.addChild(fireManaGraphic)
+        
+        iceManaGraphic.position = CGPoint(x: -120, y: -212)
+        iceManaGraphic.size = CGSizeMake(20,20)
+        gameLayer.addChild(iceManaGraphic)
+        
+        windManaGraphic.position = CGPoint(x: 50, y: -212)
+        windManaGraphic.size = CGSizeMake(20,20)
+        gameLayer.addChild(windManaGraphic)
+        
+        earthManaGraphic.position = CGPoint(x: 16, y: -212)
+        earthManaGraphic.size = CGSizeMake(20,20)
+        gameLayer.addChild(earthManaGraphic)
+        
+        lightningManaGraphic.position = CGPoint(x: 84, y: -212)
+        lightningManaGraphic.size = CGSizeMake(20,20)
+        gameLayer.addChild(lightningManaGraphic)
+        
+        waterManaGraphic.position = CGPoint(x: 118, y: -212)
+        waterManaGraphic.size = CGSizeMake(20,20)
+        gameLayer.addChild(waterManaGraphic)
+        
+        timeManaGraphic.position = CGPoint(x: -52, y: -212)
+        timeManaGraphic.size = CGSizeMake(20,20)
+        gameLayer.addChild(timeManaGraphic)
+        
+        voidManaGraphic.position = CGPoint(x: -18, y: -212)
+        voidManaGraphic.size = CGSizeMake(20,20)
+        gameLayer.addChild(voidManaGraphic)
+        
         swipeFromColumn = nil
         swipeFromRow = nil
         SKLabelNode(fontNamed: "GillSans-BoldItalic")

@@ -24,6 +24,14 @@ let soundFiles = [
 ]
 
 let gameBackground = SKSpriteNode(imageNamed: "gameBackground")
+let fireManaGraphic = SKSpriteNode(imageNamed: "element-fire")
+let iceManaGraphic = SKSpriteNode(imageNamed: "element-ice")
+let waterManaGraphic = SKSpriteNode(imageNamed: "element-water")
+let lightningManaGraphic = SKSpriteNode(imageNamed: "element-lightning")
+let windManaGraphic = SKSpriteNode(imageNamed: "element-wind")
+let earthManaGraphic = SKSpriteNode(imageNamed: "element-earth")
+let timeManaGraphic = SKSpriteNode(imageNamed: "element-time")
+let voidManaGraphic = SKSpriteNode(imageNamed: "element-void")
 
 
 //sound reference
